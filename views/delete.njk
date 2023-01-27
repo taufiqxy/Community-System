@@ -1,0 +1,42 @@
+{% extends "./layout/base.njk" %}
+
+{%block content %}
+<div class="row">
+  <h3 class="mb-3">Delete Data</h3>
+  <hr>
+
+  {% if flashMsg |length %}
+    <div class="alert alert-success">
+        {{ flashMsg }}
+    </div>
+  {% endif %}
+
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-start">ID</th>
+          <th class="text-start">Nama Lengkap</th>
+          <th class="text-start">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a_karyawan in listKaryawan %}
+        <tr>
+        <th class="text-start">{{ a_karyawan[0] }}</th>
+        <td class="text-start">{{ a_karyawan[1] }}</td>
+        <td class="text-start">{{ a_karyawan[2] }}</td>
+        <td class="text-start">
+          <form method="POST" action="/delete-data/{{ a_karyawan[0] }}">
+              <button type="submit" class="btn btn-danger">Hapus</button>
+          </form>
+        </td>
+        </tr>
+        {% else %}
+        <td colspan="6" class="text-center">Tidak Ada Data</td>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
