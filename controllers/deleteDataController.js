@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 

@@ -16,7 +16,7 @@
         "no-unused-vars": "off",
         "arrow-body-style": "off",
         "import/no-unresolved": "error",
-        "import/no-extraneous-dependencies": "error",
+        "import/no-extraneous-dependencies": "off",
         "import/no-duplicates": "error"
     }
 }

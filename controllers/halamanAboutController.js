@@ -1,9 +1,8 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 
 const halamanAboutController = async (request, h) => {
-    return nunjucks.render('views/about.njk');
+    return h.view('about');
 };
 
 module.exports = { halamanAboutController };

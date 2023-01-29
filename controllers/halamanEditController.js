@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 
@@ -11,7 +10,7 @@ const halamanEditController = async (request, h) => {
             return [x.id, x.nama_lengkap, x.email, x.alamat];
         });
         // return listKaryawan;
-        return nunjucks.render('views/edit.njk', { id, namaKaryawan });
+        return h.view('edit.njk', { id, namaKaryawan });
     } catch (err) {
         return err;
     }

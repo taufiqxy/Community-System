@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 
@@ -13,7 +12,7 @@ const addDataController = async (request, h) => {
         request.yar.flash('success add', 'Data Sukses Ditambahkan!'); // set flash message
         return h.redirect('/add-data');
     } catch (err) {
-        return err;
+        return 'Gagal Menambahkan Data';
     }
 };
 

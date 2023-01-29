@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 
@@ -10,7 +9,7 @@ const halamanIndexController = async (request, h) => {
             return [x.id, x.nama_lengkap, x.email, x.alamat];
         });
 
-        return nunjucks.render('views/index.njk', { list_karyawan: listKaryawan });
+        return h.view('index.njk', { list_karyawan: listKaryawan });
     } catch (err) {
         return 'Data gagal diambil';
     }

@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks');
 const { client } = require('../database/client');
 const { pool } = require('../database/pool');
 
@@ -10,7 +9,7 @@ const halamanUpdateController = async (request, h) => {
             return [x.id, x.nama_lengkap, x.email, x.alamat];
         });
         const flashMsg = request.yar.flash('success update'); // get flash message
-        return nunjucks.render('views/update.njk', { listKaryawan, flashMsg });
+        return h.view('update.njk', { listKaryawan, flashMsg });
     } catch (err) {
         return 'Data gagal diambil';
     }
