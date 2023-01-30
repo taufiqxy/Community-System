@@ -1,4 +1,6 @@
 const { halamanIndexController } = require('../controllers/landingController/halamanIndexController');
+const { halamanLoginController } = require('../controllers/landingController/halamanLoginController');
+const { halamanRegisterController } = require('../controllers/landingController/halamanRegisterController');
 
 const { halamanLandingAdminController } = require(
                                         '../controllers/adminController/halamanLandingAdminController',
@@ -6,7 +8,6 @@ const { halamanLandingAdminController } = require(
 const { halamanShowController } = require('../controllers/adminController/halamanShowController');
 const { halamanAddController } = require('../controllers/adminController/halamanAddController');
 const { halamanUpdateController } = require('../controllers/adminController/halamanUpdateController');
-const { halamanAboutController } = require('../controllers/landingController/halamanAboutController');
 const { halamanDeleteController } = require('../controllers/adminController/halamanDeleteController');
 const { halamanEditController } = require('../controllers/adminController/halamanEditController');
 const { addDataController } = require('../controllers/adminController/addDataController');
@@ -37,8 +38,13 @@ const routes = [
     },
     {
         method: 'GET',
-        path: urls.pageAbout,
-        handler: halamanAboutController,
+        path: urls.pageLogin,
+        handler: halamanLoginController,
+    },
+    {
+        method: 'GET',
+        path: urls.pageRegister,
+        handler: halamanRegisterController,
     },
 
     // karyawan routes

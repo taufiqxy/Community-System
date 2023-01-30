@@ -1,6 +1,7 @@
 const urls = {
     pageIndex: '/',
-    pageAbout: '/about',
+    pageRegister: '/register',
+    pageLogin: '/login',
     pageAdmin: '/admin',
     pageShow: '/admin/show-data-page',
     pageAdd: '/admin/add-data-page',
