@@ -1,5 +1,5 @@
-const { client } = require('../database/client');
-const { pool } = require('../database/pool');
+const { client } = require('../../database/client');
+const { pool } = require('../../database/pool');
 
 const halamanDeleteController = async (request, h) => {
     try {
@@ -9,7 +9,7 @@ const halamanDeleteController = async (request, h) => {
             return [x.id, x.nama_lengkap, x.email, x.alamat];
         });
         const flashMsg = request.yar.flash('success delete'); // get flash message
-        return h.view('delete.njk', { listKaryawan, flashMsg });
+        return h.view('adminArea/delete.njk', { listKaryawan, flashMsg });
     } catch (err) {
         return 'Data gagal diambil';
     }

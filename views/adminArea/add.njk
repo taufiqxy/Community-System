@@ -1,4 +1,4 @@
-{% extends "./layout/base.njk" %}
+{% extends "../layout/adminLayout.njk" %}
 
 {%block content %}
 <div class="row">
@@ -12,7 +12,7 @@
     {% endif %}
 
     <div class="text-start col-md-8 col-xl-6">
-        <form action="/add-data" method="POST">
+        <form action="/admin/add-data" method="POST">
             <div class="mb-3">
                 <label class="form-label" for="id">ID</label>
                 <input type="text" id="id" name="id" class="form-control">

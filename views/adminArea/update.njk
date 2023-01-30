@@ -1,9 +1,16 @@
-{% extends "./layout/base.njk" %}
+{% extends "../layout/adminLayout.njk" %}
 
 {%block content %}
-<h3 class="mb-3">Data karyawan</h3>
-<hr>
 <div class="row">
+  <h3 class="mb-3">Update Data</h3>
+  <hr>
+
+  {% if flashMsg |length %}
+    <div class="alert alert-success">
+        {{ flashMsg }}
+    </div>
+  {% endif %}
+
   <div class="col-12">
     <table class="table table-striped">
       <thead>
@@ -15,12 +22,17 @@
         </tr>
       </thead>
       <tbody>
-        {% for a_karyawan in list_karyawan %}
+        {% for a_karyawan in listKaryawan %}
         <tr>
         <th class="text-start">{{ a_karyawan[0] }}</th>
         <td class="text-start">{{ a_karyawan[1] }}</td>
         <td class="text-start">{{ a_karyawan[2] }}</td>
         <td class="text-start">{{ a_karyawan[3] }}</td>
+        <td class="text-start">
+            <a href="/admin/edit-data-page/{{ a_karyawan[0] }}" class="btn btn-primary">
+            Update
+            </a>
+        </td>
         </tr>
         {% else %}
         <td colspan="6" class="text-center">Tidak Ada Data</td>
@@ -29,4 +41,4 @@
     </table>
   </div>
 </div>
-{%endblock %}
+{% endblock %}

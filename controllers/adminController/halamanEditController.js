@@ -1,5 +1,5 @@
-const { client } = require('../database/client');
-const { pool } = require('../database/pool');
+const { client } = require('../../database/client');
+const { pool } = require('../../database/pool');
 
 const halamanEditController = async (request, h) => {
     const { id } = request.params;
@@ -10,7 +10,7 @@ const halamanEditController = async (request, h) => {
             return [x.id, x.nama_lengkap, x.email, x.alamat];
         });
         // return listKaryawan;
-        return h.view('edit.njk', { id, namaKaryawan });
+        return h.view('adminArea/edit.njk', { id, namaKaryawan });
     } catch (err) {
         return err;
     }

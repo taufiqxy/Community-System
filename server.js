@@ -4,7 +4,7 @@ const Yar = require('@hapi/yar');
 const Vision = require('@hapi/vision');
 const Nunjucks = require('nunjucks');
 const Path = require('path');
-const { routes } = require('./routes');
+const { routes } = require('./routes/routes');
 
 // yar pluggin setting
 const yarOption = {

@@ -1,4 +1,4 @@
-{% extends "./layout/base.njk" %}
+{% extends "../layout/adminLayout.njk" %}
 
 {%block content %}
 <div class="row">
@@ -12,7 +12,7 @@
     {% endif %}
 
     <div class="text-start col-md-8 col-xl-6">
-        <form action="/update-data/{{id}}" method="POST">
+        <form action="/admin/update-data/{{id}}" method="POST">
             <div class="mb-3">
                 <label class="form-label" for="namaLengkap">Nama Lengkap</label>
                 <input class="form-control" type="text" id="namaLengkap" name="namaLengkap" value="{{ namaKaryawan[0].nama_lengkap }}">

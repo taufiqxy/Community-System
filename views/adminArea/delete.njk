@@ -1,4 +1,4 @@
-{% extends "./layout/base.njk" %}
+{% extends "../layout/adminLayout.njk" %}
 
 {%block content %}
 <div class="row">
@@ -27,7 +27,7 @@
         <td class="text-start">{{ a_karyawan[1] }}</td>
         <td class="text-start">{{ a_karyawan[2] }}</td>
         <td class="text-start">
-          <form method="POST" action="/delete-data/{{ a_karyawan[0] }}">
+          <form method="POST" action="/admin/delete-data/{{ a_karyawan[0] }}">
               <button type="submit" class="btn btn-danger">Hapus</button>
           </form>
         </td>
