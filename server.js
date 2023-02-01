@@ -3,6 +3,7 @@ const Inert = require('@hapi/inert');
 const Yar = require('@hapi/yar');
 const Vision = require('@hapi/vision');
 const Nunjucks = require('nunjucks');
+const Cookie = require('@hapi/cookie');
 const Path = require('path');
 const { routes } = require('./routes/routes');
 
@@ -68,6 +69,47 @@ const init = async () => {
         },
         path: `${__dirname}/views`,
     });
+
+    // register cookie
+    await server.register(Cookie);
+
+    // authentication
+    // dumb data
+    const internals = {};
+    internals.users = [
+        {
+            id: 1,
+            name: 'john',
+            password: 'password',
+        },
+    ];
+
+    server.auth.strategy('session', 'cookie', {
+        cookie: {
+            name: 'sid-example',
+
+            // Don't forget to change it to your own secret password!
+            password: 'password-should-be-32-characters',
+
+            // For working via HTTP in localhost
+            isSecure: false,
+        },
+
+        redirectTo: '/login',
+
+        validate: async (request, session) => {
+            const account = internals.users.find((user) => (user.id === session.id));
+
+            if (!account) {
+                // Must return { isValid: false } for invalid cookies
+                return { isValid: false };
+            }
+
+            return { isValid: true, credentials: account };
+        },
+    });
+
+    server.auth.default('session');
 
     // set router
     server.route(routes);

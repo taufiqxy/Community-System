@@ -1,10 +1,6 @@
 const { halamanIndexController } = require('../controllers/landingController/halamanIndexController');
 const { halamanLoginController } = require('../controllers/landingController/halamanLoginController');
 const { halamanRegisterController } = require('../controllers/landingController/halamanRegisterController');
-
-const { halamanLandingAdminController } = require(
-                                        '../controllers/adminController/halamanLandingAdminController',
-                                        );
 const { halamanShowController } = require('../controllers/adminController/halamanShowController');
 const { halamanAddController } = require('../controllers/adminController/halamanAddController');
 const { halamanUpdateController } = require('../controllers/adminController/halamanUpdateController');
@@ -39,7 +35,19 @@ const routes = [
     {
         method: 'GET',
         path: urls.pageLogin,
-        handler: halamanLoginController,
+        // handler: halamanLoginController,
+        options: {
+            auth: {
+                mode: 'try',
+            },
+            plugins: {
+                cookie: {
+                    redirectTo: false,
+                },
+            },
+            handler: halamanLoginController,
+        },
+
     },
     {
         method: 'GET',
@@ -55,11 +63,6 @@ const routes = [
     // },
 
     // admin routes
-    {
-        method: 'GET',
-        path: urls.pageAdmin,
-        handler: halamanLandingAdminController,
-    },
     {
         method: 'GET',
         path: urls.pageShow,
