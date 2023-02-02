@@ -10,6 +10,7 @@ const { loginController } = require('../controllers/landingController/loginContr
 const { addDataController } = require('../controllers/adminController/addDataController');
 const { updateDataController } = require('../controllers/adminController/updateDataController');
 const { deleteDataController } = require('../controllers/adminController/deleteDataController');
+const { logoutController } = require('../controllers/adminController/logoutController');
 
 const { urls } = require('./urls');
 
@@ -113,6 +114,11 @@ const routes = [
         method: 'POST',
         path: urls.update,
         handler: updateDataController,
+    },
+    {
+        method: 'POST',
+        path: urls.logout,
+        handler: logoutController,
     },
 
 ];

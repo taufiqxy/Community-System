@@ -12,6 +12,7 @@ const urls = {
     add: '/admin/add-data',
     update: '/admin/update-data/{id}',
     delete: '/admin/delete-data/{id}',
+    logout: '/logout',
 };
 
 module.exports = { urls };

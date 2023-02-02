@@ -6,7 +6,7 @@ const loginController = async (request, reply) => {
     const { username, password } = request.payload;
     const account = internals.users.find((user) => user.username === username);
 
-    if (!account || !(await Bcrypt.compare(password, account.password))) {
+    if (!account && !(await Bcrypt.compare(password, account.password))) {
         return reply.redirect(urls.pageLogin);
     }
 
