@@ -6,6 +6,7 @@ const { halamanAddController } = require('../controllers/adminController/halaman
 const { halamanUpdateController } = require('../controllers/adminController/halamanUpdateController');
 const { halamanDeleteController } = require('../controllers/adminController/halamanDeleteController');
 const { halamanEditController } = require('../controllers/adminController/halamanEditController');
+const { loginController } = require('../controllers/landingController/loginController');
 const { addDataController } = require('../controllers/adminController/addDataController');
 const { updateDataController } = require('../controllers/adminController/updateDataController');
 const { deleteDataController } = require('../controllers/adminController/deleteDataController');
@@ -24,6 +25,9 @@ const routes = [
                 listing: false, // change to false to disable listing public path
             },
         },
+        options: {
+            auth: false,
+        },
     },
 
     // landing page routes
@@ -31,28 +35,25 @@ const routes = [
         method: 'GET',
         path: urls.pageIndex,
         handler: halamanIndexController,
+        options: {
+            auth: false,
+        },
     },
     {
         method: 'GET',
         path: urls.pageLogin,
-        // handler: halamanLoginController,
+        handler: halamanLoginController,
         options: {
-            auth: {
-                mode: 'try',
-            },
-            plugins: {
-                cookie: {
-                    redirectTo: false,
-                },
-            },
-            handler: halamanLoginController,
+            auth: false,
         },
-
     },
     {
         method: 'GET',
         path: urls.pageRegister,
         handler: halamanRegisterController,
+        options: {
+            auth: false,
+        },
     },
 
     // karyawan routes
@@ -87,6 +88,16 @@ const routes = [
         method: 'GET',
         path: urls.pageEdit,
         handler: halamanEditController,
+    },
+    {
+        method: 'POST',
+        path: urls.login,
+        handler: loginController,
+        options: {
+            auth: {
+                mode: 'try',
+            },
+        },
     },
     {
         method: 'POST',

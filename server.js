@@ -4,7 +4,9 @@ const Yar = require('@hapi/yar');
 const Vision = require('@hapi/vision');
 const Nunjucks = require('nunjucks');
 const Cookie = require('@hapi/cookie');
+const Basic = require('@hapi/basic');
 const Path = require('path');
+const { internals } = require('./dumbData');
 const { routes } = require('./routes/routes');
 
 // yar pluggin setting
@@ -44,7 +46,7 @@ const init = async () => {
         console.error(err);
     }
 
-    // register vision (vison support saveral template engine by provide 'views' method,
+    // register vision (vison support saveral templates engine by provide 'views' method,
     // but the template engine has to install separately)
     await server.register(Vision);
 
@@ -74,42 +76,29 @@ const init = async () => {
     await server.register(Cookie);
 
     // authentication
-    // dumb data
-    const internals = {};
-    internals.users = [
-        {
-            id: 1,
-            name: 'john',
-            password: 'password',
-        },
-    ];
+    const validate = async (request, session) => {
+        const account = await internals.users.find(
+            (user) => (user.id === session.id),
+        );
 
-    server.auth.strategy('session', 'cookie', {
+        if (!account) {
+            return { isValid: false };
+        }
+
+        return { isValid: true, credentials: account };
+    };
+
+    server.auth.strategy('myAuth', 'cookie', {
         cookie: {
             name: 'sid-example',
-
-            // Don't forget to change it to your own secret password!
-            password: 'password-should-be-32-characters',
-
-            // For working via HTTP in localhost
+            password: 'secret-key-password-for-security',
             isSecure: false,
         },
-
         redirectTo: '/login',
-
-        validate: async (request, session) => {
-            const account = internals.users.find((user) => (user.id === session.id));
-
-            if (!account) {
-                // Must return { isValid: false } for invalid cookies
-                return { isValid: false };
-            }
-
-            return { isValid: true, credentials: account };
-        },
+        validate,
     });
 
-    server.auth.default('session');
+    server.auth.default('myAuth');
 
     // set router
     server.route(routes);

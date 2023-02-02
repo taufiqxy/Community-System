@@ -8,6 +8,7 @@ const urls = {
     pageUpdate: '/admin/update-data-page',
     pageDelete: '/admin/delete-data-page',
     pageEdit: '/admin/edit-data-page/{id}',
+    login: '/login',
     add: '/admin/add-data',
     update: '/admin/update-data/{id}',
     delete: '/admin/delete-data/{id}',
