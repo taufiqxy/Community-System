@@ -4,6 +4,13 @@
 
 <h2>Login</h2>
 <hr>
+
+{% if flashMsg |length %}
+<div class="alert alert-danger">
+    {{ flashMsg }}
+</div>
+{% endif %}
+
 <div class="container w-25">
     <form method="POST" action="/login">
         <!-- Email input -->
