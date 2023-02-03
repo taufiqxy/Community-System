@@ -13,10 +13,27 @@
 
 <div class="container w-25">
     <form method="POST" action="/login">
+        <!-- Select Role -->
+        <div class="form-outline mb-3 text-start">
+            <label class="form-label" for="role">Login Sebagai</label>
+            <select class="form-select" name="role" id="role">
+                <option value="karyawan" {{ 'selected' if oldLoginValue[0].role =='karyawan' }}>
+                    Karyawan
+                </option>
+                <option value="admin" {{ 'selected' if oldLoginValue[0].role =='admin' }}>
+                    Admin
+                </option>
+                <option value="manager" {{ 'selected' if oldLoginValue[0].role =='manager' }}>
+                    Manager
+                </option>
+            </select>
+        </div>
         <!-- Email input -->
         <div class="form-outline mb-3 text-start">
             <label class="form-label" for="">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" />
+            <input type="email" id="email" name="email" class="form-control"
+            value="{{ oldLoginValue[0].email }}"
+            />
             <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
         </div>
         <!-- Password input -->

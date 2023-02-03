@@ -3,14 +3,22 @@ const { internals } = require('../../dumbData');
 const { urls } = require('../../routes/urls');
 
 const loginController = async (request, reply) => {
-    const { email, password } = request.payload;
+    const { role, email, password } = request.payload;
     const account = internals.users.find((user) => user.email === email);
 
     if (!account || !(await Bcrypt.compare(password, account.password))) {
-        request.yar.flash('Failed Loggin', 'Login Gagal, Pastikan Email dan password Anda Benar!'); // set flash message
+        // set information failed login via flash message
+        request.yar.flash(
+            'Failed Loggin',
+            'Login Gagal, Pastikan Email dan password Anda Benar!',
+            );
+
+        // send old value via flash message to repopulate form
+        request.yar.flash('oldLoginValue', { role, email, password });
         return reply.redirect(urls.pageLogin);
     }
 
+    // set cookie
     request.cookieAuth.set({ id: account.id });
     return reply.redirect(urls.pageShow);
 };

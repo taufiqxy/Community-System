@@ -3,7 +3,8 @@ const { pool } = require('../../database/pool');
 
 const halamanLoginController = async (request, h) => {
     const flashMsg = request.yar.flash('Failed Loggin'); // get flash message
-    return h.view('landingArea/login.njk', { flashMsg });
+    const oldLoginValue = request.yar.flash('oldLoginValue'); // get old login value
+    return h.view('landingArea/login.njk', { flashMsg, oldLoginValue });
 };
 
 module.exports = { halamanLoginController };
