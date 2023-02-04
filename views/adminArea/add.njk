@@ -5,9 +5,9 @@
     <h3 class="mb-3">Tambah Data</h3>
     <hr>
 
-    {% if flashMsg |length %}
-    <div class="alert alert-success">
-        {{ flashMsg }}
+    {% if flashMsg | length %}
+    <div class="alert alert-{{ 'success' if flashMsg[0].status == 'success' else 'danger' }}">
+        {{ flashMsg[0].msg }}
     </div>
     {% endif %}
 
