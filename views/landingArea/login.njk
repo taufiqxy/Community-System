@@ -5,13 +5,14 @@
 <h2>Login</h2>
 <hr>
 
-{% if flashMsg |length %}
-<div class="alert alert-danger">
-    {{ flashMsg }}
-</div>
-{% endif %}
+<div class="container w-50">
 
-<div class="container w-25">
+    {% if flashMsg |length %}
+    <div class="alert alert-danger">
+        {{ flashMsg }}
+    </div>
+    {% endif %}
+    
     <form method="POST" action="/login">
         <!-- Select Role -->
         <div class="form-outline mb-3 text-start">
@@ -20,11 +21,11 @@
                 <option value="karyawan" {{ 'selected' if oldLoginValue[0].role =='karyawan' }}>
                     Karyawan
                 </option>
-                <option value="admin" {{ 'selected' if oldLoginValue[0].role =='admin' }}>
-                    Admin
-                </option>
                 <option value="manager" {{ 'selected' if oldLoginValue[0].role =='manager' }}>
                     Manager
+                </option>
+                <option value="admin" {{ 'selected' if oldLoginValue[0].role =='admin' }}>
+                    Admin
                 </option>
             </select>
         </div>

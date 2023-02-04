@@ -1,7 +1,7 @@
 const { client } = require('../../database/client');
 const { pool } = require('../../database/pool');
 
-const halamanEditController = async (request, h) => {
+const pageEditController = async (request, h) => {
     const { id } = request.params;
     try {
         const result = await pool.query(`SELECT * FROM karyawan where id='${id}'`);
@@ -16,4 +16,4 @@ const halamanEditController = async (request, h) => {
     }
 };
 
-module.exports = { halamanEditController };
+module.exports = { pageEditController };

@@ -1,11 +1,11 @@
-const { halamanIndexController } = require('../controllers/landingController/halamanIndexController');
-const { halamanLoginController } = require('../controllers/landingController/halamanLoginController');
-const { halamanRegisterController } = require('../controllers/landingController/halamanRegisterController');
-const { halamanShowController } = require('../controllers/adminController/halamanShowController');
-const { halamanAddController } = require('../controllers/adminController/halamanAddController');
-const { halamanUpdateController } = require('../controllers/adminController/halamanUpdateController');
-const { halamanDeleteController } = require('../controllers/adminController/halamanDeleteController');
-const { halamanEditController } = require('../controllers/adminController/halamanEditController');
+const { pageIndexController } = require('../controllers/landingController/pageIndexController');
+const { pageLoginController } = require('../controllers/landingController/pageLoginController');
+const { pageRegisterController } = require('../controllers/landingController/pageRegisterController');
+const { pageShowController } = require('../controllers/adminController/pageShowController');
+const { pageAddController } = require('../controllers/adminController/pageAddController');
+const { pageUpdateController } = require('../controllers/adminController/pageUpdateController');
+const { pageDeleteController } = require('../controllers/adminController/pageDeleteController');
+const { pageEditController } = require('../controllers/adminController/pageEditController');
 const { loginController } = require('../controllers/landingController/loginController');
 const { addDataController } = require('../controllers/adminController/addDataController');
 const { updateDataController } = require('../controllers/adminController/updateDataController');
@@ -35,7 +35,7 @@ const routes = [
     {
         method: 'GET',
         path: urls.pageIndex,
-        handler: halamanIndexController,
+        handler: pageIndexController,
         options: {
             auth: false,
         },
@@ -43,7 +43,7 @@ const routes = [
     {
         method: 'GET',
         path: urls.pageLogin,
-        handler: halamanLoginController,
+        handler: pageLoginController,
         options: {
             auth: false,
         },
@@ -51,7 +51,7 @@ const routes = [
     {
         method: 'GET',
         path: urls.pageRegister,
-        handler: halamanRegisterController,
+        handler: pageRegisterController,
         options: {
             auth: false,
         },
@@ -68,27 +68,27 @@ const routes = [
     {
         method: 'GET',
         path: urls.pageShow,
-        handler: halamanShowController,
+        handler: pageShowController,
     },
     {
         method: 'GET',
         path: urls.pageAdd,
-        handler: halamanAddController,
+        handler: pageAddController,
     },
     {
         method: 'GET',
         path: urls.pageUpdate,
-        handler: halamanUpdateController,
+        handler: pageUpdateController,
     },
     {
         method: 'GET',
         path: urls.pageDelete,
-        handler: halamanDeleteController,
+        handler: pageDeleteController,
     },
     {
         method: 'GET',
         path: urls.pageEdit,
-        handler: halamanEditController,
+        handler: pageEditController,
     },
     {
         method: 'POST',

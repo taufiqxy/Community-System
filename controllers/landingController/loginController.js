@@ -10,7 +10,7 @@ const loginController = async (request, reply) => {
         // set information failed login via flash message
         request.yar.flash(
             'Failed Loggin',
-            'Login Gagal, Pastikan Email dan password Anda Benar!',
+            'Login Gagal. Pastikan Memasukan Email dan password Anda dengan Benar!',
             );
 
         // send old value via flash message to repopulate form

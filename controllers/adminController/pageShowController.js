@@ -1,7 +1,7 @@
 const { client } = require('../../database/client');
 const { pool } = require('../../database/pool');
 
-const halamanShowController = async (request, h) => {
+const pageShowController = async (request, h) => {
     try {
         const result = await pool.query('SELECT * FROM karyawan');
         const namaKaryawan = result.rows;
@@ -15,4 +15,4 @@ const halamanShowController = async (request, h) => {
     }
 };
 
-module.exports = { halamanShowController };
+module.exports = { pageShowController };
