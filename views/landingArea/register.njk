@@ -3,36 +3,60 @@
 {% block content %}
 
 <h2>Create New Account</h2>
-<hr>
 
 <!-- Register Form -->
 <div class="container w-50">
+    <hr>
     <form>
         <!-- Email input -->
-        <div class="form-outline mb-3 text-start">
-            <label class="form-label" for="email">Email address</label>
-            <input type="email" id="email" class="form-control" />
-            <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="email">Email address :</label>
+            <div class="col-md-6">
+                <input type="email" id="email" class="form-control" />
+                <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
+            </div>
         </div>
         <!-- Name input -->
-        <div class="form-outline mb-3 text-start">
-            <label class="form-label" for="name">Name</label>
-            <input type="name" id="name" class="form-control" />
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="name">Name :</label>
+            <div class="col-md-6">
+                <input type="name" id="name" class="form-control" />
+            </div>
         </div>
         <!-- Address input -->
-        <div class="form-outline mb-3 text-start">
-            <label class="form-label" for="address">Address</label>
-            <input type="address" id="address" class="form-control" />
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="address">Address :</label>
+            <div class="col-md-6">
+                <input type="address" id="address" class="form-control" />
+            </div>
+        </div>
+        <!-- Date of birth -->
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="birthDate">Birth of Date :</label>
+            <div class="col-md-6">
+                <input type="date" id="birthDate" class="form-control" />
+            </div>
+        </div>
+        <!-- Photo profile -->
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="photoProfile">Photo Profile :</label>
+            <div class="col-md-6">
+                <input type="file" id="photoProfile" class="form-control" />
+            </div>
         </div>
         <!-- Password input -->
-        <div class="form-outline mb-3 text-start">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" class="form-control" />
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="password">Password :</label>
+            <div class="col-md-6">
+                <input type="password" id="password" class="form-control" />
+            </div>
         </div>
         <!-- Password retype input -->
-        <div class="form-outline mb-3 text-start">
-            <label class="form-label" for="repassword">Retype Password</label>
-            <input type="repassword" id="repassword" class="form-control" />
+        <div class="mb-3 row text-start">
+            <label class="col-form-label col-md-4 text-md-end" for="repassword">Retype Password :</label>
+            <div class="col-md-6">
+                <input type="repassword" id="repassword" class="form-control" />
+            </div>
         </div>
         <!-- Submit button -->
         <div class="form-outline mb-3 d-grid text-center">
