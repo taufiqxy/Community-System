@@ -28,7 +28,7 @@ const routes = [
                 listing: false, // change to false to disable listing public path
             },
         },
-        options: {
+        config: {
             auth: false,
         },
     },
@@ -38,7 +38,7 @@ const routes = [
         method: 'GET',
         path: urls.pageIndex,
         handler: pageIndexController,
-        options: {
+        config: {
             auth: false,
         },
     },
@@ -46,7 +46,7 @@ const routes = [
         method: 'GET',
         path: urls.pageLogin,
         handler: pageLoginController,
-        options: {
+        config: {
             auth: false,
         },
     },
@@ -54,7 +54,7 @@ const routes = [
         method: 'GET',
         path: urls.pageRegister,
         handler: pageRegisterController,
-        options: {
+        config: {
             auth: false,
         },
     },
