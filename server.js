@@ -1,12 +1,13 @@
+const baseDirectory = process.cwd();
 const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Yar = require('@hapi/yar');
 const Vision = require('@hapi/vision');
 const Nunjucks = require('nunjucks');
 const Cookie = require('@hapi/cookie');
-const Basic = require('@hapi/basic');
 const Path = require('path');
-const { internals } = require('./dumbData');
+
+const { pool } = require(`${baseDirectory}/database/pool`);
 const { routes } = require('./routes/routes');
 
 // yar pluggin setting
@@ -77,12 +78,18 @@ const init = async () => {
 
     // authentication
     const validate = async (request, session) => {
-        const account = await internals.users.find(
-            (user) => (user.id === session.id),
-        );
+        // check if session.id exist from db
+        let account;
+        try {
+            let result = await pool.query(`SELECT * FROM admin where id=${session.id}`);
+            result = result.rows;
+            [account] = result; // take out result from [] by destruction without use result[0]
+        } catch (e) {
+            return 'Data failed to be fetched from the database.';
+        }
 
         if (!account) {
-            return { isValid: false };
+             return { isValid: false };
         }
 
         return { isValid: true, credentials: account };

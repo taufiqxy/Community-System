@@ -111,7 +111,7 @@ const routes = [
         method: 'POST',
         path: urls.login,
         handler: loginController,
-        options: {
+        config: {
             auth: {
                 mode: 'try',
             },

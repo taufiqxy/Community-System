@@ -1,7 +1,5 @@
 const baseDirectory = process.cwd();
 const fs = require('fs');
-const { client } = require('../../database/client');
-const { pool } = require('../../database/pool');
 
 const registerController = async (request, h) => {
     const file = request.payload.photoProfile;
