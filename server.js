@@ -5,7 +5,6 @@ const Yar = require('@hapi/yar');
 const Vision = require('@hapi/vision');
 const Nunjucks = require('nunjucks');
 const Cookie = require('@hapi/cookie');
-const Path = require('path');
 
 const { pool } = require(`${baseDirectory}/database/pool`);
 const { routes } = require('./routes/routes');

@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 const { pageIndexController } = require('../controllers/landingController/pageIndexController');
 const { pageLoginController } = require('../controllers/landingController/pageLoginController');
 const { pageRegisterController } = require('../controllers/landingController/pageRegisterController');
@@ -60,6 +62,23 @@ const routes = [
     },
     {
         method: 'POST',
+        path: urls.login,
+        config: {
+            auth: {
+                mode: 'try',
+            },
+            validate: {
+                payload: Joi.object({
+                    role: Joi.string(),
+                    email: Joi.string(),
+                    password: Joi.string(),
+                }),
+            },
+        },
+        handler: loginController,
+    },
+    {
+        method: 'POST',
         path: urls.register,
         config: {
             auth: false,
@@ -106,16 +125,6 @@ const routes = [
         method: 'GET',
         path: urls.pageEdit,
         handler: pageEditController,
-    },
-    {
-        method: 'POST',
-        path: urls.login,
-        handler: loginController,
-        config: {
-            auth: {
-                mode: 'try',
-            },
-        },
     },
     {
         method: 'POST',
