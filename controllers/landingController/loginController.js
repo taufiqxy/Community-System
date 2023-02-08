@@ -1,10 +1,32 @@
 const Bcrypt = require('bcrypt');
+const Joi = require('joi');
 const { pool } = require('../../database/pool');
 const { urls } = require('../../routes/urls');
 
-const loginController = async (request, reply) => {
+// schema validation with Joi
+const schema = Joi.object({
+    role: Joi.string(),
+    email: Joi.string(),
+    password: Joi.string(),
+});
+
+const loginController = async (request, h) => {
     // get data from client
     const { role, email, password } = request.payload;
+
+    // validation data with JOI
+    const { error } = schema.validate(request.payload);
+    if (error) {
+        // set information failed login via flash message
+        request.yar.flash(
+            'Failed Loggin',
+            error.message,
+            );
+
+        // send old value via flash message to repopulate form
+        request.yar.flash('oldLoginValue', { role, email, password });
+        return h.redirect(urls.pageLogin);
+    }
 
     // Non-admins are barred from logging in for a limited time.
     if (!(role === 'admin')) {
@@ -31,12 +53,12 @@ const loginController = async (request, reply) => {
 
         // send old value via flash message to repopulate form
         request.yar.flash('oldLoginValue', { role, email, password });
-        return reply.redirect(urls.pageLogin);
+        return h.redirect(urls.pageLogin);
     }
 
     // set cookie
     request.cookieAuth.set({ id: result.id });
-    return reply.redirect(urls.pageShow);
+    return h.redirect(urls.pageShow);
 };
 
 module.exports = { loginController };

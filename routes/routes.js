@@ -67,13 +67,6 @@ const routes = [
             auth: {
                 mode: 'try',
             },
-            validate: {
-                payload: Joi.object({
-                    role: Joi.string(),
-                    email: Joi.string(),
-                    password: Joi.string(),
-                }),
-            },
         },
         handler: loginController,
     },
