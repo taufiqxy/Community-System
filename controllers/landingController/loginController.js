@@ -8,7 +8,7 @@ const loginController = async (request, reply) => {
 
     // Non-admins are barred from logging in for a limited time.
     if (!(role === 'admin')) {
-        return 'Software is under maintenance!';
+        return 'Software is Under Construction!';
     }
 
     // get role and password from db

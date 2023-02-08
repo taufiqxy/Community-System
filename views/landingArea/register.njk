@@ -7,12 +7,12 @@
 <!-- Register Form -->
 <div class="container w-50">
     <hr>
-    <form>
+    <form method="POST" action="/register" enctype="multipart/form-data">
         <!-- Email input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="email">Email address :</label>
             <div class="col-md-6">
-                <input type="email" id="email" class="form-control" />
+                <input type="email" id="email" name='email' class="form-control" />
                 <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
             </div>
         </div>
@@ -20,47 +20,47 @@
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="name">Name :</label>
             <div class="col-md-6">
-                <input type="name" id="name" class="form-control" />
+                <input type="name" id="name" name='name' class="form-control" />
             </div>
         </div>
         <!-- Address input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="address">Address :</label>
             <div class="col-md-6">
-                <input type="address" id="address" class="form-control" />
+                <input type="address" id="address" name='address' class="form-control" />
             </div>
         </div>
         <!-- Date of birth -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="birthDate">Birth of Date :</label>
             <div class="col-md-6">
-                <input type="date" id="birthDate" class="form-control" />
+                <input type="date" id="birthDate" name='birthDate' class="form-control" />
             </div>
         </div>
         <!-- Photo profile -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="photoProfile">Photo Profile :</label>
             <div class="col-md-6">
-                <input type="file" id="photoProfile" class="form-control" />
+                <input type="file" id="photoProfile" name='photoProfile' class="form-control" accept="image/*" />
             </div>
         </div>
         <!-- Password input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="password">Password :</label>
             <div class="col-md-6">
-                <input type="password" id="password" class="form-control" />
+                <input type="password" id="password" name='password' class="form-control" />
             </div>
         </div>
         <!-- Password retype input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="repassword">Retype Password :</label>
             <div class="col-md-6">
-                <input type="repassword" id="repassword" class="form-control" />
+                <input type="repassword" id="repassword" name='repassword' class="form-control" />
             </div>
         </div>
         <!-- Submit button -->
         <div class="form-outline mb-3 d-grid text-center">
-            <button type="button" class="btn btn-primary mb-4">Register Now</button>
+            <button type="submit" class="btn btn-primary mb-4">Register Now</button>
         </div>
     </form>
 </div>

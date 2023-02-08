@@ -13,6 +13,7 @@ const urls = {
     update: '/admin/update-data/{id}',
     delete: '/admin/delete-data/{id}',
     logout: '/logout',
+    register: '/register',
 };
 
 module.exports = { urls };

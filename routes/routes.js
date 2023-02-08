@@ -1,12 +1,14 @@
 const { pageIndexController } = require('../controllers/landingController/pageIndexController');
 const { pageLoginController } = require('../controllers/landingController/pageLoginController');
 const { pageRegisterController } = require('../controllers/landingController/pageRegisterController');
+const { registerController } = require('../controllers/landingController/registerController');
+const { loginController } = require('../controllers/landingController/loginController');
+
 const { pageShowController } = require('../controllers/adminController/pageShowController');
 const { pageAddController } = require('../controllers/adminController/pageAddController');
 const { pageUpdateController } = require('../controllers/adminController/pageUpdateController');
 const { pageDeleteController } = require('../controllers/adminController/pageDeleteController');
 const { pageEditController } = require('../controllers/adminController/pageEditController');
-const { loginController } = require('../controllers/landingController/loginController');
 const { addDataController } = require('../controllers/adminController/addDataController');
 const { updateDataController } = require('../controllers/adminController/updateDataController');
 const { deleteDataController } = require('../controllers/adminController/deleteDataController');
@@ -55,6 +57,21 @@ const routes = [
         options: {
             auth: false,
         },
+    },
+    {
+        method: 'POST',
+        path: urls.register,
+        config: {
+            auth: false,
+            payload: {
+                maxBytes: 1048576,
+                // output: 'stream',
+                multipart: { output: 'stream' },
+                parse: true,
+                allow: 'multipart/form-data',
+            },
+        },
+        handler: registerController,
     },
 
     // karyawan routes
