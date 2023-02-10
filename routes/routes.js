@@ -76,7 +76,7 @@ const routes = [
         config: {
             auth: false,
             payload: {
-                maxBytes: 1048576,
+                maxBytes: 5000000,
                 // output: 'stream',
                 multipart: { output: 'stream' },
                 parse: true,

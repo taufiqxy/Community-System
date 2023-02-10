@@ -12,16 +12,13 @@ const schema = Joi.object({
 
 const loginController = async (request, h) => {
     // get data from client
-    const { role, email, password } = request.payload;
+    const { role, email, password } = await request.payload;
 
     // validation data with JOI
-    const { error } = schema.validate(request.payload);
+    const { error } = schema.validate({ role, email, password });
     if (error) {
         // set information failed login via flash message
-        request.yar.flash(
-            'Failed Loggin',
-            error.message,
-            );
+        request.yar.flash('Failed Loggin', error.message);
 
         // send old value via flash message to repopulate form
         request.yar.flash('oldLoginValue', { role, email, password });
@@ -30,7 +27,7 @@ const loginController = async (request, h) => {
 
     // Non-admins are barred from logging in for a limited time.
     if (!(role === 'admin')) {
-        return 'Software is Under Construction!';
+        return 'Software is Under Construction, Temporary Non-admins Role Does Not Allowed!';
     }
 
     // get role and password from db
@@ -58,6 +55,7 @@ const loginController = async (request, h) => {
 
     // set cookie
     request.cookieAuth.set({ id: result.id });
+
     return h.redirect(urls.pageShow);
 };
 
