@@ -1,5 +1,3 @@
-const Joi = require('joi');
-
 const { pageIndexController } = require('../controllers/landingController/pageIndexController');
 const { pageLoginController } = require('../controllers/landingController/pageLoginController');
 const { pageRegisterController } = require('../controllers/landingController/pageRegisterController');
@@ -76,11 +74,11 @@ const routes = [
         config: {
             auth: false,
             payload: {
-                maxBytes: 5000000,
-                // output: 'stream',
-                multipart: { output: 'stream' },
+                maxBytes: 5000000, // 5 MB
+                output: 'stream',
+                multipart: { output: 'data' },
                 parse: true,
-                allow: 'multipart/form-data',
+                // allow: 'multipart/form-data',
             },
         },
         handler: registerController,

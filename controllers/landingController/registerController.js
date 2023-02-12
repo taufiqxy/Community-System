@@ -10,42 +10,26 @@ const schema = Joi.object({
     birthDate: Joi.string(),
     password: Joi.string(),
     repassword: Joi.ref('password'),
-    photoProfile: Joi.object({
-        buffer: Joi.binary().required(),
-        mimetype: Joi.string().valid('image/jpeg').valid('image/png').required(),
-    }).required(),
 });
+
+// file validation
 
 const registerController = async (request, h) => {
     // Get Requested Data
     const {
-        email, name, address, birthDate, photoProfile, password, repassword,
+        email, name, address, birthDate, password, repassword,
     } = await request.payload;
-
-    console.log(photoProfile);
 
     // validate data with joi
     const { error } = schema.validate({
-        email, name, address, birthDate, photoProfile, password, repassword,
+        email, name, address, birthDate, password, repassword,
     });
 
     if (error) {
         return error.message;
     }
 
-    // Save the uploaded file to the file system
-    const filePath = `${baseDirectory}/temp/${photoProfile.hapi.filename}`;
-    const fileStream = fs.createWriteStream(filePath);
-    photoProfile.pipe(fileStream);
-
-    photoProfile.on('end', (err) => {
-        if (err) {
-            return h.response({ success: false, message: err.message }).code(500);
-        }
-        return h.response({ success: true });
-    });
-
-    return 'ok';
+    return 'register berhasil';
 };
 
 module.exports = { registerController };
