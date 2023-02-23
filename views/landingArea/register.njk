@@ -8,9 +8,15 @@
 <div class="container w-50">
     <hr>
 
-    {% if flashMsg |length %}
+    {% if flashMsg[0].status === 'failed' %}
     <div class="alert alert-danger">
-        {{ flashMsg }}
+        {{ flashMsg[0].msg }}
+    </div>
+    {% endif %}
+
+    {% if flashMsg[0].status === 'success' %}
+    <div class="alert alert-success">
+        {{ flashMsg[0].msg }}
     </div>
     {% endif %}
 
