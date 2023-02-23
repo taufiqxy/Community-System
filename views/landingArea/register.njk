@@ -7,12 +7,19 @@
 <!-- Register Form -->
 <div class="container w-50">
     <hr>
+
+    {% if flashMsg |length %}
+    <div class="alert alert-danger">
+        {{ flashMsg }}
+    </div>
+    {% endif %}
+
     <form method="POST" action="/register" enctype="multipart/form-data">
         <!-- Email input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="email">Email address :</label>
             <div class="col-md-6">
-                <input type="email" id="email" name='email' class="form-control" />
+                <input type="email" id="email" name='email' class="form-control" value="{{ oldValue[0].email }}" />
                 <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
             </div>
         </div>
@@ -20,21 +27,21 @@
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="name">Name :</label>
             <div class="col-md-6">
-                <input type="name" id="name" name='name' class="form-control" />
+                <input type="name" id="name" name='name' class="form-control" value="{{ oldValue[0].name }}" />
             </div>
         </div>
         <!-- Address input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="address">Address :</label>
             <div class="col-md-6">
-                <input type="address" id="address" name='address' class="form-control" />
+                <input type="address" id="address" name='address' class="form-control" value="{{ oldValue[0].address }}" />
             </div>
         </div>
         <!-- Date of birth -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="birthDate">Birth of Date :</label>
             <div class="col-md-6">
-                <input type="date" id="birthDate" name='birthDate' class="form-control" />
+                <input type="date" id="birthDate" name='birthDate' class="form-control" value="{{ oldValue[0].birthDate }}"/>
             </div>
         </div>
 
@@ -56,7 +63,7 @@
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="codeActivation">Code Activation :</label>
             <div class="col-md-6">
-                <input type="text" id="codeActivation" name='codeActivation' class="form-control" />
+                <input type="text" id="codeActivation" name='codeActivation' class="form-control" value="{{ oldValue[0].codeActivation }}" />
             </div>
         </div>
         <!-- Submit button -->
