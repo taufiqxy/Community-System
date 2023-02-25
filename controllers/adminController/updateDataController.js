@@ -1,13 +1,12 @@
-const { client } = require('../../database/client');
 const { pool } = require('../../database/pool');
 
 const updateDataController = async (request, h) => {
     const { id } = request.params;
-    const { namaLengkap, email, alamat } = request.payload;
+    const { name, email, address } = request.payload;
 
     try {
         const result = await pool.query(`UPDATE karyawan SET
-                                        nama_lengkap='${namaLengkap}', email='${email}', alamat='${alamat}' 
+                                        name='${name}', email='${email}', address='${address}' 
                                         WHERE id='${id}'`);
         request.yar.flash('success update', 'Data Sukses Diupdate!'); // set flash message
         return h.redirect('/admin/update-data-page');

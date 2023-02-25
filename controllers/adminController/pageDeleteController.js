@@ -6,7 +6,7 @@ const pageDeleteController = async (request, h) => {
         const result = await pool.query('SELECT * FROM karyawan');
         const namaKaryawan = result.rows;
         const listKaryawan = namaKaryawan.map((x) => {
-            return [x.id, x.nama_lengkap, x.email, x.alamat];
+            return [x.id, x.name, x.email, x.address];
         });
         const flashMsg = request.yar.flash('success delete'); // get flash message
         return h.view('adminArea/delete.njk', { listKaryawan, flashMsg });

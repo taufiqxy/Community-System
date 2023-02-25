@@ -5,6 +5,7 @@
     <h3 class="mb-3">Update {{ id }}</h3>
     <hr>
 
+    <!-- Get Flash Message if Available -->
     {% if flashMsg |length %}
     <div class="alert alert-success">
         {{ flashMsg }}
@@ -13,20 +14,34 @@
 
     <div class="text-start col-md-8 col-xl-6">
         <form action="/admin/update-data/{{id}}" method="POST">
+            <!-- Name -->
             <div class="mb-3">
-                <label class="form-label" for="namaLengkap">Nama Lengkap</label>
-                <input class="form-control" type="text" id="namaLengkap" name="namaLengkap" value="{{ namaKaryawan[0].nama_lengkap }}">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="name" value="{{ aKaryawan[0].name }}">
             </div>
+            <!-- Email -->
             <div class="mb-3">
                 <label class="form-label" for="email">Email</label>
-                <input class="form-control" type="text" id="email" name="email" value="{{ namaKaryawan[0].email }}">
+                <input class="form-control" type="text" id="email" name="email" value="{{ aKaryawan[0].email }}">
             </div>
+            <!-- Address -->
             <div class="mb-3">
-                <label class="form-label" for="alamat">Alamat</label>
-                <input class="form-control" type="text" id="alamat" name="alamat" value="{{ namaKaryawan[0].alamat }}">
+                <label class="form-label" for="address">Address</label>
+                <input class="form-control" type="text" id="address" name="address" value="{{ aKaryawan[0].address }}">
             </div>
+            <!-- Birth Date -->
+            <div class="mb-3">
+                <label class="form-label" for="birthDate">Birth Date</label>
+                <input class="form-control" type="text" id="birthDate" name="birthDate" value="{{ aKaryawan[0].birth_date }}">
+            </div>
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="text" id="password" name="password" value="{{ aKaryawan[0].password }}">
+            </div>
+            <!-- Submit  -->
             <div class="text-end">
-            <button type="submit" class="btn btn-primary mb-2">Update Data</button>
+                <button type="submit" class="btn btn-primary mb-2">Update Data</button>
             </div>
         </form>
     </div>

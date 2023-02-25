@@ -2,36 +2,58 @@
 
 {%block content %}
 <div class="row">
-    <h3 class="mb-3">Tambah Data</h3>
-    <hr>
+    <div class="container w-50">
+        <h3 class="mb-3">Tambah Data</h3>
+        <hr>
 
-    <!-- Show Flash Message if Available -->
-    {% if flashMsg | length %}
-    <div class="alert alert-{{ 'success' if flashMsg[0].status == 'success' else 'danger' }}">
-        {{ flashMsg[0].msg }}
-    </div>
-    {% endif %}
+        <!-- Show Flash Message if Available -->
+        {% if flashMsg | length %}
+        <div class="alert alert-{{ 'success' if flashMsg[0].status == 'success' else 'danger' }}">
+            {{ flashMsg[0].msg }}
+        </div>
+        {% endif %}
 
-    <div class="text-start col-md-8 col-xl-6">
         <form action="/admin/add-data" method="POST">
-            <div class="mb-3">
-                <label class="form-label" for="id">ID</label>
-                <input type="text" id="id" name="id" class="form-control">
+            <!-- Name -->
+            <div class="mb-3 row text-start">
+                <label class="col-form-label col-md-4 text-md-end" for="name">Name :</label>
+                <div class="col-md">
+                    <input type="text" id="name" name="name" class="form-control">
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="namaLengkap">Nama Lengkap</label>
-                <input type="text" id="namaLengkap" name="namaLengkap" class="form-control">
+            <!-- Email -->
+            <div class="mb-3 row text-start">
+                <label class="col-form-label col-md-4 text-md-end" for="email">Email :</label>
+                <div class="col-md">
+                    <input type="text" id="email" name="email" class="form-control">
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="email">Email</label>
-                <input type="text" id="email" name="email" class="form-control">
+            <!-- Address -->
+            <div class="mb-3 row text-start">
+                <label class="col-form-label col-md-4 text-md-end" for="address">Address :</label>
+                <div class="col-md">
+                    <input type="text" id="address" name="address" class="form-control">
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="alamat">Alamat</label>
-                <input type="text" id="alamat" name="alamat" class="form-control">
+            <!-- Date of birth -->
+            <div class="mb-3 row text-start">
+                <label class="col-form-label col-md-4 text-md-end" for="birthDate">Birth of Date :</label>
+                <div class="col-md">
+                    <input type="date" id="birthDate" name='birthDate' class="form-control" value="{{ oldValue[0].birthDate }}"/>
+                </div>
             </div>
-            <div class="text-end">
-            <button type="submit" class="btn btn-primary mb-2">Tambahkan Data</button>
+            <!-- Password input -->
+            <div class="mb-3 row text-start">
+                <label class="col-form-label col-md-4 text-md-end" for="password">Password :</label>
+                <div class="col-md">
+                    <input type="password" id="password" name='password' class="form-control" />
+                </div>
+            </div>
+            <!-- Submit -->
+            <div class="mb-3 row text-end">
+                <div class="col-form-label">
+                <button type="submit" class="btn btn-primary mb-2">Add Data</button>
+                </div>
             </div>
         </form>
     </div>

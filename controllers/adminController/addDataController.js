@@ -3,12 +3,14 @@ const { pool } = require('../../database/pool');
 
 const addDataController = async (request, h) => {
     const {
-        id, namaLengkap, email, alamat,
+        name, email, address, birthDate, password,
     } = request.payload;
 
     try {
-        const result = await pool.query(`insert into karyawan values
-                                        ('${id}', '${namaLengkap}', '${email}', '${alamat}')`);
+        const result = await pool.query(`INSERT INTO karyawan
+                                        (name, email, address, birth_date, password)
+                                        VALUES
+                                        ('${name}', '${email}', '${address}', '${birthDate}', '${password}')`);
         // set success flash message
         request.yar.flash('flashMsg add', {
             status: 'success', msg: 'Data Sukses Ditambahkan!',
