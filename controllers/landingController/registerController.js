@@ -41,8 +41,10 @@ const registerController = async (request, h) => {
     console.log(email, name, address, birthDate, password, repassword, codeActivation); // rm this
 
     try {
-        const result = await pool.query(`insert into karyawan values
-                                        ('${codeActivation}', '${name}', '${email}', '${address}')`);
+        const result = await pool.query(`INSERT INTO karyawan
+                                        (name, email, address, birth_date, password)
+                                        VALUES
+                                        ('${name}', '${email}', '${address}', '${birthDate}', '${password}')`);
         // set success flash message
         request.yar.flash('flashMsg', {
             status: 'success', msg: 'Register Berhasil!',
@@ -53,6 +55,7 @@ const registerController = async (request, h) => {
         request.yar.flash('flashMsg', {
             status: 'failed', msg: 'Register Gagal!',
         });
+        console.log(err);
         return h.redirect('/register');
     }
 };
