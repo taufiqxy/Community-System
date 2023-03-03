@@ -6,7 +6,7 @@ const { pool } = require('../../database/pool');
 // schema validation with Joi
 const schema = Joi.object({
     email: Joi.string(),
-    name: Joi.string(),
+    name: Joi.string().required(),
     address: Joi.string(),
     birthDate: Joi.string(),
     password: Joi.string(),

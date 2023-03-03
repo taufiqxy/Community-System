@@ -1,4 +1,3 @@
-const { client } = require('../../database/client');
 const { pool } = require('../../database/pool');
 
 const pageEditController = async (request, h) => {
@@ -6,7 +5,7 @@ const pageEditController = async (request, h) => {
     try {
         const result = await pool.query(`SELECT * FROM karyawan where id='${id}'`);
         let aKaryawan = result.rows;
-        [aKaryawan] = aKaryawan;
+        [aKaryawan] = aKaryawan; // destructure array, alternative: aKaryawan = aKaryawan[0]
         // const birthDate = {
         //     year: aKaryawan.birth_date.getFullYear(),
         //     month: aKaryawan.birth_date.getMonth() + 1,
