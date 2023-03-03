@@ -64,7 +64,7 @@
                 <div class="row g-2">
                     <div class="col-3">
                         <input type="number" name="birthDateDay" id="birthDateDay"
-                        class="form-control col-md-3 d-inline"
+                        class="form-control col-md-3 d-inline {% if fieldError.name === 'birthDateDay' %}is-invalid {% endif %}"
                         placeholder="Day" value="{{ oldValue.birthDateDay }}">
                     </div>
                     <div class="col-5">
@@ -74,9 +74,16 @@
                     </div>
                     <div class="col-4">
                         <input type="number" name="birthDateYear" id="birthDateYear"
-                        class="form-control col-md-3 d-inline"
+                        class="form-control col-md-3 d-inline {% if fieldError.name === 'birthDateYear' %}is-invalid {% endif %}"
                         placeholder="Year" value="{{ oldValue.birthDateYear }}">
                     </div>
+
+                    {% if fieldError.name === 'birthDateDay' or fieldError.name === 'birthDateMonth' or fieldError.name === 'birthDateYear'%}
+                        <div class="text-danger">
+                            <small><strong>{{ fieldError.msg }}</strong></small>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
