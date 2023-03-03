@@ -5,46 +5,87 @@ const { pool } = require('../../database/pool');
 
 // schema validation with Joi
 const schema = Joi.object({
-    email: Joi.string(),
+    email: Joi.string().required(),
     name: Joi.string().required(),
-    address: Joi.string(),
-    birthDate: Joi.string(),
-    password: Joi.string(),
+    address: Joi.string().required(),
+    birthDateDay: Joi.string().required(),
+    birthDateMonth: Joi.string().required(),
+    birthDateYear: Joi.string().required(),
+    password: Joi.string().required(),
     repassword: Joi.ref('password'),
-    codeActivation: Joi.string(),
+    codeActivation: Joi.string().required(),
 });
 
 const registerController = async (request, h) => {
     // Get Requested Data
     const {
-        email, name, address, birthDate, password, repassword, codeActivation,
+        email,
+        name,
+        address,
+        birthDateDay,
+        birthDateMonth,
+        birthDateYear,
+        password,
+        repassword,
+        codeActivation,
     } = await request.payload;
 
     // validate data with joi
     const { error } = schema.validate({
-        email, name, address, birthDate, password, repassword, codeActivation,
+        email,
+        name,
+        address,
+        birthDateDay,
+        birthDateMonth,
+        birthDateYear,
+        password,
+        repassword,
+        codeActivation,
     });
 
     if (error) {
-        // set information failed login via flash message
-        request.yar.flash('flashMsg', {
-            status: 'failed', msg: error.message,
+        // get field of error
+        request.yar.flash('fieldError', {
+            name: error.details[0].path[0], msg: error.message,
         });
 
         // send old value via flash message to repopulate form
         request.yar.flash('oldRegisterValue', {
-            email, name, address, birthDate, password, repassword, codeActivation,
+            email,
+            name,
+            address,
+            birthDateDay,
+            birthDateMonth,
+            birthDateYear,
+            password,
+            repassword,
+            codeActivation,
         });
         return h.redirect(urls.pageRegister);
     }
 
-    console.log(email, name, address, birthDate, password, repassword, codeActivation); // rm this
+    // merge birth date
+    const birthDate = `${birthDateYear}-${birthDateMonth}-${birthDateDay}`;
+
+    // rm this
+    console.log(
+        email,
+        name,
+        address,
+        birthDateYear,
+        birthDateMonth,
+        birthDateDay,
+        password,
+        repassword,
+        codeActivation,
+        );
+    console.log(birthDate);
 
     try {
         const result = await pool.query(`INSERT INTO karyawan
                                         (name, email, address, birth_date, password)
                                         VALUES
-                                        ('${name}', '${email}', '${address}', '${birthDate}', '${password}')`);
+                                        ('${name}', '${email}', '${address}', TO_DATE('${birthDate}', 'YYYY-MM-DD'), '${password}')`);
         // set success flash message
         request.yar.flash('flashMsg', {
             status: 'success', msg: 'Register Berhasil!',

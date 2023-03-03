@@ -8,15 +8,15 @@
 <div class="container w-50">
     <hr>
 
-    {% if flashMsg[0].status === 'failed' %}
+    {% if flashMsg.status === 'failed' %}
     <div class="alert alert-danger">
-        {{ flashMsg[0].msg }}
+        {{ flashMsg.msg }}
     </div>
     {% endif %}
 
-    {% if flashMsg[0].status === 'success' %}
+    {% if flashMsg.status === 'success' %}
     <div class="alert alert-success">
-        {{ flashMsg[0].msg }}
+        {{ flashMsg.msg }}
     </div>
     {% endif %}
 
@@ -25,26 +25,36 @@
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="email">Email address :</label>
             <div class="col-md">
-                <input type="email" id="email" name='email' class="form-control" value="{{ oldValue[0].email }}" />
-                <small id="emailHelp" class="form-text text-muted">Make Sure You Enter Valid Email!</small>
+                <input type="email" id="email" name='email' class="form-control {% if fieldError.name === 'email' %}is-invalid {% endif %}" value="{{ oldValue.email }}" />
+                {% if fieldError.name === 'email' %}
+                <div class="text-danger">
+                    <small><strong>{{ fieldError.msg }}</strong></small>
+                </div>
+                {% endif %}
             </div>
         </div>
         <!-- Name input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="name">Name :</label>
             <div class="col-md">
-                <input type="name" id="name" name='name' class="form-control is-invalid" value="{{ oldValue[0].name }}" />
+                <input type="name" id="name" name='name' class="form-control {% if fieldError.name === 'name' %}is-invalid {% endif %}" value="{{ oldValue.name }}" />
+                {% if fieldError.name === 'name' %}
                 <div class="text-danger">
-                    <small><strong>error cuk!</strong></small>
+                    <small><strong>{{ fieldError.msg }}</strong></small>
                 </div>
-
+                {% endif %}
             </div>
         </div>
         <!-- Address input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="address">Address :</label>
             <div class="col-md">
-                <input type="address" id="address" name='address' class="form-control" value="{{ oldValue[0].address }}" />
+                <input type="address" id="address" name='address' class="form-control {% if fieldError.name === 'address' %}is-invalid {% endif %}" value="{{ oldValue.address }}" />
+                {% if fieldError.name === 'address' %}
+                <div class="text-danger">
+                    <small><strong>{{ fieldError.msg }}</strong></small>
+                </div>
+                {% endif %}
             </div>
         </div>
         <!-- Date of birth -->
@@ -55,41 +65,55 @@
                     <div class="col-3">
                         <input type="number" name="birthDateDay" id="birthDateDay"
                         class="form-control col-md-3 d-inline"
-                        placeholder="Day" value="">
+                        placeholder="Day" value="{{ oldValue.birthDateDay }}">
                     </div>
                     <div class="col-5">
-                        <select name="birthDateYear" id="birthDateYear" class="form-select col-md-4 d-inline">
+                        <select name="birthDateMonth" id="birthDateMonth" class="form-select col-md-4 d-inline">
                         <!-- this part handle by javaScript -->
                         </select>
                     </div>
                     <div class="col-4">
                         <input type="number" name="birthDateYear" id="birthDateYear"
                         class="form-control col-md-3 d-inline"
-                        placeholder="Year" value="">
+                        placeholder="Year" value="{{ oldValue.birthDateYear }}">
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Password input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="password">Password :</label>
             <div class="col-md">
-                <input type="password" id="password" name='password' class="form-control" />
+                <input type="password" id="password" name='password' class="form-control {% if fieldError.name === 'password' %}is-invalid {% endif %}"/>
+                {% if fieldError.name === 'password' %}
+                <div class="text-danger">
+                    <small><strong>{{ fieldError.msg }}</strong></small>
+                </div>
+                {% endif %}
             </div>
         </div>
         <!-- Password retype input -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="repassword">Retype Password :</label>
             <div class="col-md">
-                <input type="password" id="repassword" name='repassword' class="form-control" />
+                <input type="password" id="repassword" name='repassword' class="form-control {% if fieldError.name === 'repassword' %}is-invalid {% endif %}" />
+                {% if fieldError.name === 'repassword' %}
+                <div class="text-danger">
+                    <small><strong>{{ fieldError.msg }}</strong></small>
+                </div>
+                {% endif %}
             </div>
         </div>
         <!-- Code Activation -->
         <div class="mb-3 row text-start">
             <label class="col-form-label col-md-4 text-md-end" for="codeActivation">Code Activation :</label>
             <div class="col-md">
-                <input type="text" id="codeActivation" name='codeActivation' class="form-control" value="{{ oldValue[0].codeActivation }}" />
+                <input type="text" id="codeActivation" name='codeActivation' class="form-control {% if fieldError.name === 'codeActivation' %}is-invalid {% endif %}" value="{{ oldValue.codeActivation }}" />
+                {% if fieldError.name === 'codeActivation' %}
+                <div class="text-danger">
+                    <small><strong>{{ fieldError.msg }}</strong></small>
+                </div>
+                {% endif %}
             </div>
         </div>
         <!-- Submit button -->
@@ -103,13 +127,13 @@
     // brithDateMonth
     const MonthName = ["January","February","March","April", "May","June","July","August","September",
                         "October","November","December"];
-    select = document.getElementById('birthDateYear');
+    select = document.getElementById('birthDateMonth');
 
     for (let i = 0; i<12; i++){
         let opt = document.createElement('option');
         opt.value = i + 1;
         opt.innerHTML = MonthName[i];
-        if ( MonthName[i] == "July" ) {
+        if ( (i + 1) == "{{ oldValue.birthDateMonth }}" ) {
             opt.selected = 'selected';
         }
         select.appendChild(opt);
