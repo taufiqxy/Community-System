@@ -78,7 +78,7 @@
                         placeholder="Year" value="{{ oldValue.birthDateYear }}">
                     </div>
 
-                    {% if fieldError.name === 'birthDateDay' or fieldError.name === 'birthDateMonth' or fieldError.name === 'birthDateYear'%}
+                    {% if fieldError.name === 'birthDate' %}
                         <div class="text-danger">
                             <small><strong>{{ fieldError.msg }}</strong></small>
                         </div>

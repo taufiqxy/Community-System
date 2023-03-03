@@ -18,6 +18,7 @@
           <th class="text-start">ID</th>
           <th class="text-start">Nama Lengkap</th>
           <th class="text-start">Email</th>
+          <th class="text-start">Alamat</th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@
         <th class="text-start">{{ a_karyawan[0] }}</th>
         <td class="text-start">{{ a_karyawan[1] }}</td>
         <td class="text-start">{{ a_karyawan[2] }}</td>
+        <td class="text-start">{{ a_karyawan[3] }}</td>
         <td class="text-start">
           <form method="POST" action="/admin/delete-data/{{ a_karyawan[0] }}">
               <button type="submit" class="btn btn-danger">Hapus</button>

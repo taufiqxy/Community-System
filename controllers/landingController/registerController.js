@@ -1,5 +1,5 @@
 const baseDirectory = process.cwd();
-const Joi = require('joi');
+const Joi = require('joi').extend(require('@joi/date'));
 const { urls } = require('../../routes/urls');
 const { pool } = require('../../database/pool');
 
@@ -8,9 +8,9 @@ const schema = Joi.object({
     email: Joi.string().required(),
     name: Joi.string().required(),
     address: Joi.string().required(),
-    birthDateDay: Joi.string().required(),
-    birthDateMonth: Joi.string().required(),
-    birthDateYear: Joi.string().required(),
+    birthDate: Joi.date()
+                .format('YYYY-MM-DD')
+                .required(),
     password: Joi.string().required(),
     repassword: Joi.ref('password'),
     codeActivation: Joi.string().required(),
@@ -30,14 +30,17 @@ const registerController = async (request, h) => {
         codeActivation,
     } = await request.payload;
 
+    // merge birth date
+    const formatedDay = birthDateDay.padStart(2, '0');
+    const formatedMonth = birthDateMonth.padStart(2, '0');
+    const birthDate = `${birthDateYear}-${formatedMonth}-${formatedDay}`;
+
     // validate data with joi
     const { error } = schema.validate({
         email,
         name,
         address,
-        birthDateDay,
-        birthDateMonth,
-        birthDateYear,
+        birthDate,
         password,
         repassword,
         codeActivation,
@@ -63,9 +66,6 @@ const registerController = async (request, h) => {
         });
         return h.redirect(urls.pageRegister);
     }
-
-    // merge birth date
-    const birthDate = `${birthDateYear}-${birthDateMonth}-${birthDateDay}`;
 
     // rm this
     console.log(
