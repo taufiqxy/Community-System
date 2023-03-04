@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD System</title>
+  <title>{% block title %}Karyawan System{% endblock %}</title>
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="icon" type="image" href="/img/favicon.jpg">
   <style>
@@ -35,18 +35,18 @@
     </div>
 
     <div class="container mt-3">
-      <ul class="nav justify-content-center">
+      <ul class="nav nav-pills justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="/admin/show-data-page">Show Data</a>
+          <a class="nav-link {% block activeShow %}{% endblock %}" href="/admin/show-data-page">Show Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/add-data-page">Add Data</a>
+          <a class="nav-link {% block activeAdd %}{% endblock %}" href="/admin/add-data-page">Add Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/update-data-page">Update Data</a>
+          <a class="nav-link {% block activeUpdate %}{% endblock %}" href="/admin/update-data-page">Update Data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/delete-data-page">Delete Data</a>
+          <a class="nav-link {% block activeDelete %}{% endblock %}" href="/admin/delete-data-page">Delete Data</a>
         </li>
         <li class="nav-item">
           <form method="POST" action="/logout">
