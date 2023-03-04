@@ -3,12 +3,19 @@
 {% block activeHome %}active{% endblock %}
 
 {% block content %}
-<h2>Selamat Datang di Sistem Pengelolaan Karyawan</h2>
-<hr>
-<br>
-<pre>
-    Silahkan Login atau Daftar Terlebih Dahulu Apabila Belum Memiliki Akun
-</pre>
-<br>
-<a href="/admin/show-data-page" class="text-decoration-none">Admin Area</a>
+<!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h1 class="text-white font-weight-bold">Selamat Datang<br>di Sistem Pengelolaan Karyawan</h1>
+                        <hr class="style5">
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5">Silahkan Login atau Daftar Terlebih Dahulu Apabila Belum Memiliki Akun</p>
+                        <a class="btn btn-primary btn-xl" href="/admin/show-data-page">Admin Area</a>
+                    </div>
+                </div>
+            </div>
+        </header>
 {% endblock %}
