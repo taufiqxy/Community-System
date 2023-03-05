@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Karyawan System{% endblock %}</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="icon" type="image" href="/img/favicon.jpg">
+  <style>
+    .container {
+      margin-top: 10px
+    }
+    hr.style5 {
+	    background-color: #fff;
+	    border-top: 2px dashed #8c8b8b;
+    }
+    hr.style13 {
+	    height: 10px;
+	    border: 0;
+	    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+    }
+    body {
+      padding-top: 85px;
+      background-color: #e6e6fa
+    }
+  </style>
+</head>
+
+<body>
+    <!-- header -->
+  <div class='container mt-0 fixed-top bg-light'>
+    <div class="container mt-3">
+      <hr class="style5">
+    </div>
+
+    <div class="container mt-3">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link {% block activeProfile %}{% endblock %}" href="/karyawan/profile">Show Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block activeUpdate %}{% endblock %}" href="#">Update Data</a>
+        </li>
+        <li class="nav-item">
+          <form method="POST" action="/logout">
+            <input type="submit" class="nav-link" value="Logout">
+          </form>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container mt-3">
+      <hr class="style5">
+    </div>
+  </div>
+
+<!-- content is here -->
+  <div class="container text-center mt-5 p-4 bg-white">
+  {% block content %} {% endblock %}
+  </div>
+
+<!-- footer -->
+  <div class="container mt-4 text-black-50 py-4 bg-dark bg-body-tertiary">
+    <div class="text-center">
+      © 2023 - Taufiq Hidayat
+    </div>
+  </div>
+     
+  <script src="js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

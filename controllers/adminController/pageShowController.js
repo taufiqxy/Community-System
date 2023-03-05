@@ -1,4 +1,3 @@
-const { client } = require('../../database/client');
 const { pool } = require('../../database/pool');
 
 const pageShowController = async (request, h) => {

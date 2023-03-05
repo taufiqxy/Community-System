@@ -25,6 +25,13 @@ const loginController = async (request, h) => {
         return h.redirect(urls.pageLogin);
     }
 
+    // test karyawan profile page
+    if (role === 'karyawan') {
+        // set cookie
+        request.cookieAuth.set({ id: '1' }); // test using admin id
+        return h.redirect(urls.pageProfile);
+    }
+
     // Non-admins are barred from logging in for a limited time.
     if (!(role === 'admin')) {
         return 'Software is Under Construction, Temporary Non-admins Role Does Not Allowed!';

@@ -14,6 +14,8 @@ const { updateDataController } = require('../controllers/adminController/updateD
 const { deleteDataController } = require('../controllers/adminController/deleteDataController');
 const { logoutController } = require('../controllers/adminController/logoutController');
 
+const { pageProfileController } = require('../controllers/karyawanController/pageProfileController');
+
 const { urls } = require('./urls');
 
 const routes = [
@@ -85,11 +87,11 @@ const routes = [
     },
 
     // karyawan routes
-    // {
-    //     method: 'GET',
-    //     path: urls.pageKaryawan,
-    //     handler: '',
-    // },
+    {
+        method: 'GET',
+        path: urls.pageProfile,
+        handler: pageProfileController,
+    },
 
     // admin routes
     {
