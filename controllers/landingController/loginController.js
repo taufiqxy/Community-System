@@ -26,7 +26,7 @@ const loginController = async (request, h) => {
     }
 
     // test karyawan profile page
-    if (role === 'karyawan') {
+    if (role === 'member') {
         // set cookie
         request.cookieAuth.set({ id: '1' }); // test using admin id
         return h.redirect(urls.pageProfile);

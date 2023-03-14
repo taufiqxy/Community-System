@@ -12,7 +12,7 @@ const pageProfileController = async (request, h) => {
     // } catch (err) {
     //     return 'Data gagal diambil';
     // }
-    return h.view('karyawanArea/profile.njk');
+    return h.view('memberArea/profile.njk');
 };
 
 module.exports = { pageProfileController };
