@@ -23,11 +23,11 @@
         <div class="form-outline mb-3 text-start">
             <label class="form-label" for="role">Login as</label>
             <select class="form-select" name="role" id="role">
-                <option value="karyawan" {{ 'selected' if oldLoginValue[0].role =='karyawan' }}>
-                    Karyawan
+                <option value="member" {{ 'selected' if oldLoginValue[0].role =='member' }}>
+                    Community Member
                 </option>
-                <option value="manager" {{ 'selected' if oldLoginValue[0].role =='manager' }}>
-                    Manager
+                <option value="leader" {{ 'selected' if oldLoginValue[0].role =='leader' }}>
+                    Community Leader
                 </option>
                 <option value="admin" {{ 'selected' if oldLoginValue[0].role =='admin' }}>
                     Admin
